@@ -1,0 +1,14 @@
+namespace: otus-hw-2-volodina
+replicaCount: 2
+image:
+  repository: elenkavolodina/otus_hw2:latest
+service:
+  type: NodePort
+  port: 8000
+postgresql:
+  enabled: true
+  postgresqlUsername: root
+  postgresqlPassword: root
+  postgresqlDatabase: otus
+  service:
+    port: "5432"

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "hw_2_chart.fullname" . }}
+  namespace: {{ .Values.namespace }}
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ include "hw_2_chart.fullname" . }}
+                port:
+                  number: 8000
+            pathType: Prefix
+            path: /

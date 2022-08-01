@@ -4,31 +4,26 @@
 
 ### Используемый Docker образ
 ```shell
-docker pull 
+docker pull elenkavolodina/otus_hw2:latest
 ```
 
 ### Миграции
 ```shell
-alembic upgrade head
+Команда alembic upgrade head вызывается в initContainers в hw_2_chart/templates/deployment.yaml
 ```
 
 ### Запуск приложения
 ```shell
-cd k8s
-kubectl create namespace otus-hw-1-volodina
-kubectl apply -f .
+kubectl create namespace otus-hw-2-volodina
+helm upgrade --install -n otus-hw-2-volodina otus-hw-2-volodina ./hw_2_chart
 ```
+
 ### Удаление приложения
 ```shell
-kubectl delete namespaces otus-hw-1-volodina
+helm uninstall otus-hw-2-volodina -n otus-hw-2-volodina
 ```
 
 ### Postman коллекция
 ```shell
-newman run postman_collection/otus_hw_1.postman_collection.json
+newman run postman_collection/otus_hw_2.postman_collection.json
 ```
-          
-```shell
-
-```
-
