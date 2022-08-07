@@ -41,7 +41,7 @@ newman run postman_collection/otus_hw_2.postman_collection.json
 ```
 
 ### Созданный дашборд в Grafana
-```
+
 ![скриншот](grafana/dashboard_hw3.png)
-``````
+
 [grafana/dashboard.json](grafana/dashboard.json)
