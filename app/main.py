@@ -1,4 +1,9 @@
-from fastapi import FastAPI, HTTPException, APIRouter
+import math
+from asyncio import sleep
+from random import randint
+
+from fastapi import FastAPI, HTTPException, APIRouter, Request
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from app.schemas.user import User, UserCreate, UserUpdate
 from app.utils import user as user_utils
@@ -8,9 +13,33 @@ app = FastAPI(
     version="1",
 )
 
+x = 1
+
+
+def lkm():
+    global x
+    x = (1664525*x+1013904223) % math.pow(2, 10)
+    return int(x)
+
+
+@app.middleware("http")
+async def middleware(request: Request, call_next):
+    if request.url.path in ('/metrics', '/health'):
+        return await call_next(request)
+    await sleep(lkm()/1000)
+    response = await call_next(request)
+    i = randint(0, 50)
+    if 10 < i < 20:
+        raise Exception('My Error')
+    return response
+
+
+instrumentator = Instrumentator()
+instrumentator.instrument(app).expose(app)
+
 
 @app.get("/health")
-async def root():
+async def health():
     return {"status": "OK"}
 
 

@@ -13,6 +13,7 @@ pydantic = {extras = ["email"], version = "^1.9.1"}
 asyncpg = "^0.26.0"
 SQLAlchemy = {extras = ["asyncio"], version = "^1.4.39"}
 psycopg2-binary = "^2.9.3"
+prometheus-fastapi-instrumentator = "^5.8.2"
 
 [tool.poetry.dev-dependencies]
 

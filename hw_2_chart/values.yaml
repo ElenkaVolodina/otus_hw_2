@@ -1,7 +1,7 @@
 namespace: otus-hw-2-volodina
 replicaCount: 2
 image:
-  repository: elenkavolodina/otus_hw2:latest
+  repository: elenkavolodina/otus_hw2:v2
 service:
   type: NodePort
   port: 8000
